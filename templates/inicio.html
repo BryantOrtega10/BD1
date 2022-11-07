@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear funcionario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}"/>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-12"><h1>Agregar Funcionario</h1></div>
+            </div>            
+        </div>
+    </header>
+    <div class="container">
+        {% if info.error %}
+            <div class="alert alert-danger" role="alert">
+                {{info.error}}
+            </div>
+        {% endif %}
+
+        {% if info.success %}
+            <div class="alert alert-success" role="alert">
+                {{info.success}}
+            </div>
+        {% endif %}
+        <div class="row justify-content-md-center">
+            <div class="col-sm-12 col-md-6">
+                <form method="post" enctype="multipart/form-data" class="form-floating">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="id_funcionario" id="id_funcionario" placeholder="Id funcionario:">
+                        <label for="floatingInput">Id Funcionario <span class="ob">(*)</span>:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="nombre_funcionario" id="nombre_funcionario" placeholder="Nombre:">
+                        <label for="floatingInput">Nombre <span class="ob">(*)</span>:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="apellido_funcionario" id="apellido_funcionario" placeholder="Apellido:">
+                        <label for="floatingInput">Apellido <span class="ob">(*)</span>:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="cedula_funcionario" id="cedula_funcionario" placeholder="C&eacute;dula:">
+                        <label for="floatingInput">C&eacute;dula <span class="ob">(*)</span>:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" name="telefono_funcionario" id="telefono_funcionario" placeholder="Tel&eacute;fono:">
+                        <label for="floatingInput">Tel&eacute;fono:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" name="correo_funcionario" id="correo_funcionario" placeholder="Correo:">
+                        <label for="floatingInput">Correo <span class="ob">(*)</span>:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-select" name="cargo_funcionario" id="cargo_funcionario">
+                            <option selected value="">Seleccione uno</option>
+                            
+                            {% for cargo in info.cargos %}
+                                <option value="{{cargo[0]}}">{{cargo[1]}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="cargo_funcionario">Cargo <span class="ob">(*)</span>:</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <select class="form-select" name="facultad_funcionario" id="facultad_funcionario">
+                            <option selected  value="">Seleccione uno</option>
+                            {% for facultad in info.facultades %}
+                                <option value="{{facultad[0]}}">{{facultad[1]}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="facultad_funcionario">Facultad:</label>
+                    </div>
+                    <input type="submit" class="btn btn-success w-100" value="Agregar Funcionario" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+</html>
